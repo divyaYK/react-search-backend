@@ -7,5 +7,9 @@ export class AppRoutes {
     app.post("/api/abr", (req: Request, res: Response) => {
       this.abr_controller.create_record(req, res);
     });
+
+    app.post("/api/abr/actions/find", (req: Request, res: Response) => {
+      this.abr_controller.get_records(req, res);
+    });
   }
 }

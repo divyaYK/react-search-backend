@@ -6,6 +6,8 @@ import * as mongoose from "mongoose";
 import env from "../env";
 import * as dotenv from "dotenv";
 
+dotenv.config();
+
 class App {
   public app: express.Application;
   public mongoUrl: string = `mongodb+srv://divyaYK:${
@@ -22,7 +24,6 @@ class App {
     this.commonRoutes.route(this.app);
   }
   private config(): void {
-    dotenv.config();
     this.app.use(bodyParser.json());
     this.app.use(bodyParser.urlencoded({ extended: false }));
   }

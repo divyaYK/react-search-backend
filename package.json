@@ -27,7 +27,8 @@
   },
   "scripts": {
     "dev": "nodemon --watch './**/*.ts' --exec ts-node src/server.ts",
-    "uploadData": "npx ts-node ./src/uploadData.ts "
+    "uploadData": "npx ts-node ./src/uploadData.ts",
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
