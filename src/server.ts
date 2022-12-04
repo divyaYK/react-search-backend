@@ -1,4 +1,4 @@
-import env from "env";
+import env from "./env";
 import app from "./config/app";
 
 const PORT = env.getPort();

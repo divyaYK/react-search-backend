@@ -1,4 +1,13 @@
-import deepFreeze from "utils/deepFreeze";
+import * as mongoose from "mongoose";
+import deepFreeze from "../utils/deepFreeze";
+import {
+  EntityTypeInd,
+  MainOrLegal,
+  NameType,
+  StateEnum,
+  StatusType,
+} from "./schema";
+
 export const HttpResponses = deepFreeze({
   ok: {
     statusCode: 200,
@@ -33,3 +42,77 @@ export const HttpResponses = deepFreeze({
     message: "500 Internal Server Error",
   },
 });
+
+const mongoSchema = mongoose.Schema;
+
+const abrSchema = new mongoSchema({
+  abn: {
+    status: {
+      type: String,
+      enum: StatusType,
+    },
+    statusFromDate: Date,
+    value: String,
+  },
+  entityType: {
+    entityTypeInd: {
+      type: String,
+      enum: EntityTypeInd,
+    },
+    entityTypeText: String,
+  },
+  entity: {
+    entityCategory: {
+      type: String,
+      enum: MainOrLegal,
+    },
+    entityName: {
+      nameType: {
+        type: String,
+        enum: NameType,
+      },
+      nonIndividualName: String,
+      givenName: [String],
+      familyName: String,
+      nameTitle: String,
+    },
+    businessAddress: {
+      state: {
+        type: String,
+        enum: StateEnum,
+      },
+      postcode: String,
+    },
+  },
+  asicNumber: {
+    asicNumberType: String,
+    value: String,
+  },
+  gst: {
+    status: String,
+    statusFromDate: Date,
+  },
+  dgr: {
+    status: String,
+    statusFromDate: Date,
+    nonIndividualName: {
+      nameType: {
+        type: String,
+        enum: NameType,
+      },
+      value: String,
+    },
+  },
+  otherEntity: [
+    {
+      nameType: {
+        type: String,
+        enum: NameType,
+      },
+      value: String,
+    },
+  ],
+  recordLastUpdatedDate: Date,
+});
+
+export const ABRModel = mongoose.model("ABR", abrSchema);

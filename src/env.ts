@@ -1,4 +1,4 @@
-import deepFreeze from "utils/deepFreeze";
+import deepFreeze from "./utils/deepFreeze";
 
 enum Environments {
   devEnv = "dev",
@@ -7,7 +7,7 @@ enum Environments {
 
 const APIConfig = deepFreeze({
   dev: {
-    port: 4500,
+    port: 4502,
     db: "db_firmable_dev",
   },
   prod: {
