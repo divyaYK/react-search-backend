@@ -5,6 +5,7 @@ import { AppRoutes } from "../routes/routes";
 import * as mongoose from "mongoose";
 import env from "../env";
 import * as dotenv from "dotenv";
+import * as cors from "cors";
 
 dotenv.config();
 
@@ -26,6 +27,7 @@ class App {
   private config(): void {
     this.app.use(bodyParser.json());
     this.app.use(bodyParser.urlencoded({ extended: false }));
+    this.app.use(cors());
   }
   private connectMongoDB(): void {
     mongoose.connect(this.mongoUrl);
